@@ -1,20 +1,18 @@
 class Solution {
 public:
-    static int minIncrementForUnique(vector<int>& nums) {
-        int freq[200001]={0}, x0=1e5, n=nums.size();
-        for(int x: nums){
-            freq[x]++;
-            x0=min(x0, x);
-        }
-        int cnt=0, inc=0;
-        for(int x=x0; cnt<n; x++){
-            int f=freq[x];
-            cnt+=(f!=0);
-            if (f<=1) continue;
-            freq[x+1]+=(f-1);
-            inc+=(f-1);
+    int minIncrementForUnique(vector<int>& nums) {
+        // if (nums.size() <= 1) return 0;         
+        sort(nums.begin(), nums.end()); 
+        
+        int moves = 0;
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] <= nums[i - 1]) {
+                int increment = nums[i - 1] - nums[i] + 1; 
+                nums[i] = nums[i] + increment; 
+                moves = moves + increment; 
+            }
         }
         
-        return inc;
+        return moves;
     }
 };
