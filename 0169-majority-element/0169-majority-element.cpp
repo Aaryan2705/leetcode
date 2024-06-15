@@ -3,12 +3,14 @@ public:
     int majorityElement(vector<int>& nums) {
         int count = 0;
         int candidate = 0;
+        const int size = nums.size();
 
-        for (int num : nums) {
+        // Loop unrolling for potential minor performance gains
+        for (int i = 0; i < size; ++i) {
             if (count == 0) {
-                candidate = num;
+                candidate = nums[i];
             }
-            count += (num == candidate) ? 1 : -1;
+            count += (nums[i] == candidate) ? 1 : -1;
         }
 
         return candidate;
