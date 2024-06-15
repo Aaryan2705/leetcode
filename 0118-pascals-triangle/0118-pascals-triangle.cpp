@@ -1,19 +1,17 @@
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> triangle;
+        if (numRows == 0) return {};
+        if (numRows == 1) return {{1}};
         
-        for (int i = 0; i < numRows; ++i) {
-            vector<int> row(i + 1, 1); // Create a new row with i+1 elements, all initialized to 1
-            
-            // Fill the row excluding the first and last elements
-            for (int j = 1; j < i; ++j) {
-                row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
-            }
-            
-            triangle.push_back(row); // Add the current row to the triangle
+        vector<vector<int>> prevRows = generate(numRows - 1);
+        vector<int> newRow(numRows, 1);
+        
+        for (int i = 1; i < numRows - 1; i++) {
+            newRow[i] = prevRows.back()[i - 1] + prevRows.back()[i];
         }
         
-        return triangle;
+        prevRows.push_back(newRow);
+        return prevRows;
     }
 };
