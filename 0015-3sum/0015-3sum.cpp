@@ -5,7 +5,7 @@ public:
         sort(nums.begin(), nums.end());
         int n = nums.size();
         
-        for (int i = 0; i < n - 2; ++i) {
+        for (int i = 0; i < n - 2; i++) {
             if (i > 0 && nums[i] == nums[i - 1])
                 continue;
             
@@ -15,17 +15,19 @@ public:
             while (left < right) {
                 int sum = nums[left] + nums[right];
                 if (sum < target) {
-                    ++left;
+                    left++;
                 } else if (sum > target) {
-                    --right;
+                    right--;
                 } else {
                     result.push_back({nums[i], nums[left], nums[right]});
+                    // Skip duplicates of nums[left]
                     while (left < right && nums[left] == nums[left + 1])
-                        ++left;
+                        left++;
+                    // Skip duplicates of nums[right]
                     while (left < right && nums[right] == nums[right - 1])
-                        --right;
-                    ++left;
-                    --right;
+                        right--;
+                    left++;
+                    right--;
                 }
             }
         }
