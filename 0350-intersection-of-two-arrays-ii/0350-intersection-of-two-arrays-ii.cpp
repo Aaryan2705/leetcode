@@ -16,7 +16,7 @@ public:
             } else if (nums1[i] > nums2[j]) {
                 j++;
             } else { // nums1[i] == nums2[j]
-                intersection.push_back(nums1[i]);
+                intersection.push_back(nums2[j]);
                 i++;
                 j++;
             }
