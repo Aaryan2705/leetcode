@@ -7,16 +7,16 @@ public:
         
         // Merge strings alternately
         while (i < len1 && j < len2) {
-            result += word1[i++];
-            result += word2[j++];
+            result = result + word1[i++];
+            result = result + word2[j++];
         }
         
         // Append remaining part of the longer string
         while (i < len1) {
-            result += word1[i++];
+            result = result + word1[i++];
         }
         while (j < len2) {
-            result += word2[j++];
+            result = result + word2[j++];
         }
         
         return result;
