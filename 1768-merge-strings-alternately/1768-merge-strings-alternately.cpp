@@ -1,24 +1,18 @@
 class Solution {
 public:
     string mergeAlternately(string word1, string word2) {
-        string result;
+        string merged;
         int i = 0, j = 0;
-        int len1 = word1.length(), len2 = word2.length();
-        
-        // Merge strings alternately
-        while (i < len1 && j < len2) {
-            result = result + word1[i++];
-            result = result + word2[j++];
+        while (i < word1.size() && j < word2.size()) {
+            merged += word1[i++];
+            merged += word2[j++];
         }
-        
-        // Append remaining part of the longer string
-        while (i < len1) {
-            result = result + word1[i++];
+        while (i < word1.size()) {
+            merged += word1[i++];
         }
-        while (j < len2) {
-            result = result + word2[j++];
+        while (j < word2.size()) {
+            merged += word2[j++];
         }
-        
-        return result;
+        return merged;
     }
 };
