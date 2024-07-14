@@ -1,38 +1,23 @@
 class Solution {
 public:
     string reverseParentheses(string s) {
-        stack<char> st;
-
+        stack<int> openBrackets;
         for (int i = 0; i < s.length(); i++) {
-            char c = s[i];
-            if (c == ')') {
-                string temp = "";
-                // Pop until we find an opening parenthesis '('
-                while (st.top() != '(') {
-                    temp += st.top();
-                    st.pop();
-                }
-                st.pop();  // Remove the '(' from the stack
-
-                // Push the reversed substring back to the stack
-                for (int j = 0; j < temp.length(); j++) {
-                    st.push(temp[j]);
-                }
-            } else {
-                st.push(c);
+            if (s[i] == '(') {
+                openBrackets.push(i);
+            } else if (s[i] == ')') {
+                int start = openBrackets.top();
+                openBrackets.pop();
+                reverse(s.begin() + start + 1, s.begin() + i);
             }
         }
-
-        // Build the final result
-        string result = "";
-        while (!st.empty()) {
-            result += st.top();
-            st.pop();
+        
+        string result;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] != '(' && s[i] != ')') {
+                result += s[i];
+            }
         }
-
-        // Reverse the result since it is constructed in reverse order
-        reverse(result.begin(), result.end());
-
         return result;
     }
 };
