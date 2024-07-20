@@ -14,8 +14,9 @@ public:
             chars[j++] = chars[i++];
             
             if (count > 1) {
-                for (char c : to_string(count)) {
-                    chars[j++] = c;
+                string countStr = to_string(count);
+                for (int k = 0; k < countStr.size(); ++k) {
+                    chars[j++] = countStr[k];
                 }
             }
         }
