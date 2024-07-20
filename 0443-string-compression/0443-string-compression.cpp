@@ -15,7 +15,7 @@ public:
             
             if (count > 1) {
                 string countStr = to_string(count);
-                for (int k = 0; k < countStr.size(); ++k) {
+                for (int k = 0; k < countStr.size(); k++) {
                     chars[j++] = countStr[k];
                 }
             }
