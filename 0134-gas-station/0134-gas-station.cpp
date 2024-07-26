@@ -16,7 +16,7 @@ public:
         }
 
         // Try to find the starting gas station from where the circuit can be completed
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             currentGas += gas[i] - cost[i]; // Update currentGas by adding gas at station i and subtracting the cost to reach the next station
             // If currentGas is negative, it means starting from startIndex to this station i is not possible
             if (currentGas < 0) {
