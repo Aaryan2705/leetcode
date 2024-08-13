@@ -1,23 +1,27 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        // Use stringstream to split the string into words
+        // Create a stringstream object to split the string into words
         stringstream ss(s);
+        
+        // Declare a variable to hold each word
         string word;
+        
+        // Declare a string to store the final result
         string result;
         
-        // Add words to the result in reverse order
+        // Use a while loop to extract words from the stringstream
         while (ss >> word) {
+            // Prepend each word to the result string, followed by a space
             result = word + " " + result;
         }
         
-        // Remove the trailing space and return the result
+        // If the result is not empty, remove the trailing space
         if (!result.empty()) {
             result.pop_back();
         }
         
+        // Return the final reversed string
         return result;
     }
 };
-
-    
