@@ -1,29 +1,24 @@
 class Solution {
 public:
     string kthDistinct(vector<string>& arr, int k) {
-        int distinctCount = 0;
-
-        for (int i = 0; i < arr.size(); ++i) {
-            bool isDistinct = true;
-
-            // Check if the string arr[i] is distinct
-            for (int j = 0; j < arr.size(); ++j) {
-                if (i != j && arr[i] == arr[j]) {
-                    isDistinct = false;
-                    break;
+        // Loop through the array to find the distinct strings
+        for (int i = 0; i < arr.size(); i++) {
+            int count = 0;
+            // Check how many times the string appears in the array
+            for (int j = 0; j < arr.size(); j++) {
+                if (arr[i] == arr[j]) {
+                    count++;
                 }
             }
-
-            // If distinct, increment the distinct count
-            if (isDistinct) {
-                distinctCount++;
-                if (distinctCount == k) {
-                    return arr[i];
+            // If the string appears exactly once, it's distinct
+            if (count == 1) {
+                k--; // Reduce k for each distinct string found
+                if (k == 0) {
+                    return arr[i]; // Return the kth distinct string
                 }
             }
         }
-
-        // If there are fewer than k distinct strings
+        // If fewer than k distinct strings are found, return an empty string
         return "";
     }
 };
